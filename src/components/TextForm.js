@@ -24,7 +24,6 @@ export default function TextForm(props) {
 
   // onChange function
   const handleOnChange = (event) => {
-    console.log("On Change");
     setText(event.target.value);
   };
 
@@ -52,10 +51,7 @@ export default function TextForm(props) {
 
   // to copy the text
   const handleCopyText = () => {
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges();
+    navigator.clipboard.writeText(text);  
     props.showAlert("Text copied to clipboard!", "Success");
   };
 
@@ -177,7 +173,6 @@ export default function TextForm(props) {
 
           {/* button to paste the text */}
           <button
-            disabled={text.length === 0}
             type="button"
             onClick={handlePaste}
             className="btn btn-outline-info mx-2 my-2"
@@ -215,7 +210,7 @@ export default function TextForm(props) {
         {/* showing total words and characters */}
         <p>
           {
-            text.split(" ").filter((element) => {
+            text.split(/\s+/).filter((element) => {
               return element.length !== 0;
             }).length
           }{" "}

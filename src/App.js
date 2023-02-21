@@ -20,7 +20,29 @@ function App() {
     }, 1000);
   };
 
-  const toggleMode = () => {
+  // const toggleMode = () => {
+  //   if (mode === "light") {
+  //     setMode("dark");
+  //     document.body.style.backgroundColor = "black";
+  //     showAlert("Dark mode has been enabled", "Success");
+  //   } else {
+  //     setMode("light");
+  //     document.body.style.backgroundColor = "white";
+  //     showAlert("Light mode has been enabled", "Success");
+  //   }
+  // };
+
+  const removeBodyClasses = () => {
+    document.body.classList.remove("bg-primary");
+    document.body.classList.remove("bg-danger");
+    document.body.classList.remove("bg-success");
+    document.body.classList.remove("bg-warning");
+    document.body.classList.remove("bg-secondary");
+  };
+
+  const toggleMode = (cls) => {
+    removeBodyClasses();
+    document.body.classList.add("bg-" + cls);
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "black";
